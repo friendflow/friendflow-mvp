@@ -1,2 +1,3 @@
-# friendflow-mvp
-MVP version of the FriendFlow social app.
+# FriendFlow MVP
+
+A social connection app that allows users to chat, follow, and access VIP content.
