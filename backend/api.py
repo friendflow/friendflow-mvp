@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from live_feed import fetch_live_feed
@@ -14,14 +15,27 @@ app = FastAPI(
 
 
 # -------------------------
-# Temporary in-memory data
+# CORS
+# -------------------------
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# -------------------------
+# Temporary users
 # -------------------------
 
 users = []
 
 
 # -------------------------
-# Data models
+# Request models
 # -------------------------
 
 class SignupRequest(BaseModel):
