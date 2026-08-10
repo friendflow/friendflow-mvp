@@ -5,121 +5,192 @@ class VipScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+
       appBar: AppBar(
         title: const Text('FriendFlow VIP'),
         centerTitle: true,
       ),
+
+
       body: ListView(
+
         padding: const EdgeInsets.all(20),
+
         children: [
+
           const Icon(
             Icons.workspace_premium,
-            size: 80,
+            size: 90,
             color: Colors.amber,
           ),
 
+
           const SizedBox(height: 15),
 
+
           const Text(
-            'Upgrade to FriendFlow VIP',
+            'Upgrade to VIP 👑',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 26,
               fontWeight: FontWeight.bold,
             ),
           ),
 
+
           const SizedBox(height: 10),
 
+
           const Text(
-            'Get more visibility and enjoy special FriendFlow features.',
+            'Unlock premium features and grow your FriendFlow experience.',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16),
           ),
 
-          const SizedBox(height: 30),
 
-          _buildPlan(
-            context,
-            title: 'VIP Basic',
-            price: '\$3',
-            description: 'Basic profile boost and VIP badge.',
+          const SizedBox(height: 25),
+
+
+          const Card(
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+
+                  Text(
+                    'VIP Benefits',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  SizedBox(height: 10),
+
+                  Text('✓ VIP Badge'),
+
+                  Text('✓ Profile Boost'),
+
+                  Text('✓ More Matching Visibility'),
+
+                  Text('✓ Priority Live Features'),
+
+                ],
+              ),
+            ),
           ),
 
-          _buildPlan(
-            context,
-            title: 'VIP Plus',
-            price: '\$7',
-            description: 'More profile exposure and additional VIP features.',
+
+          const SizedBox(height: 20),
+
+
+          _planCard(
+            'VIP Basic',
+            '\$3',
+            'VIP badge and profile boost',
           ),
 
-          _buildPlan(
-            context,
-            title: 'VIP Premium',
-            price: '\$15',
-            description: 'Maximum profile exposure and premium features.',
+
+          _planCard(
+            'VIP Plus',
+            '\$7',
+            'More visibility and extra features',
           ),
+
+
+          _planCard(
+            'VIP Premium',
+            '\$15',
+            'Maximum FriendFlow experience',
+          ),
+
         ],
       ),
     );
   }
 
-  Widget _buildPlan(
-    BuildContext context, {
-    required String title,
-    required String price,
-    required String description,
-  }) {
+
+
+  Widget _planCard(
+    String title,
+    String price,
+    String description,
+  ) {
+
     return Card(
-      margin: const EdgeInsets.only(bottom: 15),
-      elevation: 3,
+
+      elevation: 4,
+
+      margin:
+          const EdgeInsets.only(bottom: 15),
+
+
       child: Padding(
-        padding: const EdgeInsets.all(18),
+
+        padding:
+            const EdgeInsets.all(18),
+
+
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+
+          crossAxisAlignment:
+              CrossAxisAlignment.start,
+
+
           children: [
+
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style:
+                  const TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
+
 
             const SizedBox(height: 8),
 
-            Text(
-              description,
-              style: const TextStyle(fontSize: 15),
-            ),
 
-            const SizedBox(height: 15),
+            Text(description),
+
+
+            const SizedBox(height: 10),
+
 
             Text(
               price,
-              style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
-              ),
+              style:
+                  const TextStyle(
+                    fontSize: 24,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
 
-            const SizedBox(height: 12),
+
+            const SizedBox(height: 10),
+
 
             SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('$title selected. Payment will be added later.'),
+
+              width:
+                  double.infinity,
+
+              child:
+                  ElevatedButton(
+
+                onPressed: () {},
+
+                child:
+                    const Text(
+                      'Choose Plan',
                     ),
-                  );
-                },
-                child: const Text('Choose Plan'),
+
               ),
             ),
+
           ],
         ),
       ),
