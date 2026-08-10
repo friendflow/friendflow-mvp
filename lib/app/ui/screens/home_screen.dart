@@ -5,6 +5,9 @@ import 'profile_screen.dart';
 import 'request_marriage_screen.dart';
 import 'vip_screen.dart';
 import 'selfie_verification_screen.dart';
+import 'live_screen.dart';
+import 'wallet_screen.dart';
+import 'gift_store_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _pages = const [
     _HomeFeed(),
     ChatScreen(),
-    _LiveScreen(),
+    LiveScreen(),
     _MarriageScreen(),
     ProfileScreen(),
   ];
@@ -28,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => VipScreen(),
+        builder: (context) => const VipScreen(),
       ),
     );
   }
@@ -37,7 +40,25 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SelfieVerificationScreen(),
+        builder: (context) => const SelfieVerificationScreen(),
+      ),
+    );
+  }
+
+  void _openWallet() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const WalletScreen(),
+      ),
+    );
+  }
+
+  void _openGiftStore() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const GiftStoreScreen(),
       ),
     );
   }
@@ -52,8 +73,23 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        centerTitle: false,
         actions: [
+          IconButton(
+            tooltip: 'Wallet',
+            onPressed: _openWallet,
+            icon: const Icon(
+              Icons.diamond,
+              color: Colors.blue,
+            ),
+          ),
+          IconButton(
+            tooltip: 'Gifts',
+            onPressed: _openGiftStore,
+            icon: const Icon(
+              Icons.card_giftcard,
+              color: Colors.pink,
+            ),
+          ),
           IconButton(
             tooltip: 'VIP',
             onPressed: _openVip,
@@ -65,7 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             tooltip: 'Verification',
             onPressed: _openVerification,
-            icon: const Icon(Icons.verified_user),
+            icon: const Icon(
+              Icons.verified_user,
+            ),
           ),
         ],
       ),
@@ -124,7 +162,6 @@ class _HomeFeed extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(12),
       children: [
-
         const Text(
           'Welcome to FriendFlow 👋',
           style: TextStyle(
@@ -144,7 +181,6 @@ class _HomeFeed extends StatelessWidget {
 
         const SizedBox(height: 20),
 
-        // Stories
         SizedBox(
           height: 105,
           child: ListView(
@@ -181,7 +217,6 @@ class _HomeFeed extends StatelessWidget {
 
         const SizedBox(height: 15),
 
-        // Post 1
         const _PostCard(
           name: 'FriendFlow Community',
           text:
@@ -192,7 +227,6 @@ class _HomeFeed extends StatelessWidget {
 
         const SizedBox(height: 15),
 
-        // Post 2
         const _PostCard(
           name: 'FriendFlow Live',
           text:
@@ -233,7 +267,7 @@ class _HomeFeed extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => VipScreen(),
+                        builder: (context) => const VipScreen(),
                       ),
                     );
                   },
@@ -317,7 +351,6 @@ class _PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           ListTile(
             leading: const CircleAvatar(
               child: Icon(Icons.person),
@@ -385,109 +418,6 @@ class _PostCard extends StatelessWidget {
 
 
 // ======================================================
-// LIVE SCREEN
-// ======================================================
-
-class _LiveScreen extends StatelessWidget {
-  const _LiveScreen();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(12),
-      children: [
-
-        const Text(
-          'Live Now 🔴',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-
-        const SizedBox(height: 15),
-
-        _LiveCard(
-          name: 'Live Creator 1',
-          viewers: '1.2K viewers',
-          color: Colors.red.shade300,
-        ),
-
-        _LiveCard(
-          name: 'Live Creator 2',
-          viewers: '856 viewers',
-          color: Colors.purple.shade300,
-        ),
-
-        _LiveCard(
-          name: 'Live Creator 3',
-          viewers: '432 viewers',
-          color: Colors.orange.shade300,
-        ),
-
-        const SizedBox(height: 15),
-
-        ElevatedButton.icon(
-          onPressed: () {},
-          icon: const Icon(Icons.videocam),
-          label: const Text('Start Live'),
-        ),
-      ],
-    );
-  }
-}
-
-
-class _LiveCard extends StatelessWidget {
-  final String name;
-  final String viewers;
-  final Color color;
-
-  const _LiveCard({
-    required this.name,
-    required this.viewers,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: Column(
-        children: [
-
-          Container(
-            height: 170,
-            width: double.infinity,
-            color: color,
-            child: const Center(
-              child: Icon(
-                Icons.live_tv,
-                size: 65,
-                color: Colors.white,
-              ),
-            ),
-          ),
-
-          ListTile(
-            leading: const CircleAvatar(
-              child: Icon(Icons.person),
-            ),
-            title: Text(name),
-            subtitle: Text(viewers),
-            trailing: ElevatedButton(
-              onPressed: () {},
-              child: const Text('Join'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-// ======================================================
 // MARRIAGE SCREEN
 // ======================================================
 
@@ -499,7 +429,6 @@ class _MarriageScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-
         const Icon(
           Icons.favorite,
           color: Colors.pink,
